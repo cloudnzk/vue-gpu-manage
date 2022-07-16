@@ -1,5 +1,5 @@
 <template>
-    欢迎
+  <div class="welcome">欢迎</div>
 </template>
 <script>
   export default {
@@ -20,6 +20,6 @@
     methods: {},
   }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 
 </style>
