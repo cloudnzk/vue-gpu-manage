@@ -17,6 +17,8 @@
   </div>
 </template>
 <script>
+// import {request} from "utils/request"
+
 export default {
   name: "HomePage",
   mixins: [],
@@ -27,7 +29,11 @@ export default {
   },
   computed: {},
   watch: {},
-  created() {},
+  created() {
+    // request({
+    //   'url': '/login'
+    // }).then(res => console.log(res))
+  },
   mounted() {},
   unmounted() {},
   methods: {},
