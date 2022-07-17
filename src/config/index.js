@@ -22,7 +22,7 @@ const EnvConfig = {
 export default {
     env,
     mock: true,
-    namespace: 'manager',
+    stroageSpace: 'manager',
     // 对象解构
     ...EnvConfig[env]
 }
