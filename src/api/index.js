@@ -3,11 +3,12 @@
  */
 import { request } from "@/utils/request"
 export default {
-    login(params){
+    login(data){
         return request({
+            url: '/users/login',
             method: 'post',
-            url: '/login',
-            params,
+            // post 请求不是传 params，而是 data
+            data,
         })
     }
 }

@@ -6,22 +6,22 @@ const env = process.env.NODE_ENV || 'production'
 
 const EnvConfig = {
     development: {
-        baseApi: '/',
+        baseApi: '/api',
         mockApi: 'https://www.fastmock.site/mock/570516aa02cdbd8eae42789628bb362b/api'
     },
     test: {
-        baseApi: '/',
+        baseApi: '/test.com/api',
         mockApi: 'https://www.fastmock.site/mock/570516aa02cdbd8eae42789628bb362b/api'
     },
     production: {
-        baseApi: '/',
+        baseApi: '/production.com/api',
         mockApi: 'https://www.fastmock.site/mock/570516aa02cdbd8eae42789628bb362b/api'
     },
 }
 
 export default {
     env,
-    mock: true,
+    mock: false,
     stroageSpace: 'manager',
     // 对象解构
     ...EnvConfig[env]
