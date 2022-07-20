@@ -1,25 +1,49 @@
 <template>
-  <div class="welcome">欢迎</div>
+  <div class="welcome-main">
+    <div class="welcome-left">
+      <div class="main-title">欢迎使用</div>
+      <div class="sub-title">后台管理系统V1.0</div>
+      <div class="desc">
+        - Vue3.0+ElementPlus+Node+Mongo打造通用后台管理系统
+      </div>
+    </div>
+    <div class="welcome-right"></div>
+  </div>
 </template>
 <script>
-  export default {
-    name:'WelcomePage',
-    mixins: [],
-    components: {},
-    props:{},
-    data () {
-      return {
-
-      };
-    },
-    computed: {},
-    watch: {},
-    created() {},
-    mounted() {},
-    unmounted() {},
-    methods: {},
-  }
+export default {
+  name: "WelcomePage",
+};
 </script>
 <style lang="scss" scoped>
-
+.welcome-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #fff;
+  .welcome-left {
+    margin-bottom: 50px;
+    .main-title {
+      font-size: 30px;
+      font-weight: bold;
+    }
+    .sub-title {
+      font-size: 40px;
+      line-height: 62px;
+      color: #409eff;
+    }
+    .desc {
+      text-align: right;
+      font-size: 14px;
+      color: #999;
+    }
+  }
+  .welcome-right {
+    background: url("./../assets/images/welcome.png");
+    width: 371px;
+    height: 438px;
+    margin-left: 200px;
+  }
+}
 </style>

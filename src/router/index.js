@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
-const Home = () => import('../components/Home')
+const Home = () => import('../views/Home')
 const Welcome = () => import('../views/Welcome')
 const Login = () => import('../views/Login')
 
