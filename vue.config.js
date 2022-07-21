@@ -7,7 +7,7 @@ module.exports = defineConfig({
     // 设置跨域代理
     proxy: {
       "/api": {
-        target: "http://127.0.0.1:3000/api",
+        target: "http://127.0.0.1:3001/api",
         ws: true,
         changeOrigin: true,
         pathRewrite: {
@@ -27,5 +27,6 @@ module.exports = defineConfig({
         'views': '@/views',
       },
     },
-  }
+  },
+  lintOnSave: false, //关闭eslint检查
 })

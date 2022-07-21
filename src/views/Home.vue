@@ -70,9 +70,7 @@
 
       <!-- 子路由展示 -->
       <div class="wrapper">
-        <div class="main-page">
           <router-view></router-view>
-        </div>
       </div>
     </div>
   </div>

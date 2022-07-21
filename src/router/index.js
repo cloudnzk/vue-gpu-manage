@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 const Home = () => import('../views/Home')
 const Welcome = () => import('../views/Welcome')
 const Login = () => import('../views/Login')
+const Users = () => import('../views/Users')
 
 const routes = [
     {
@@ -22,6 +23,14 @@ const routes = [
                     title: '欢迎页'
                 },
                 component: Welcome,
+            },
+            {
+                name: 'user',
+                path: '/user',
+                meta: {
+                    title: '用户管理'
+                },
+                component: Users,
             },
         ]
     },
