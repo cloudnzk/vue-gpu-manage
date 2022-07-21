@@ -18,9 +18,10 @@ const service = axios.create({
 
 // 请求拦截
 service.interceptors.request.use((config) => {
-    const localStroage = storage.getItem('userInfo');
-    if(localStroage){
-        config.headers.Authorization = 'Bearer ' + localStroage.token;
+    // 发送请求前，检查是否有 token 值，如果有就带上发送
+    const {token} = storage.getItem('userInfo');
+    if(token){
+        config.headers.Authorization = 'Bearer ' + token;
     }
     return config;
 })

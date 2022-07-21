@@ -15,7 +15,7 @@
         active-text-color="#409eff"
         :collapse="isCollapse"
       >
-      <!-- <MenuTree :menuList="menuList"/> -->
+        <!-- <MenuTree :menuList="menuList"/> -->
         <el-sub-menu index="1">
           <template #title>
             <el-icon><Setting /></el-icon>
@@ -48,7 +48,7 @@
         <div class="top-userinfo">
           <!-- 通知 -->
           <el-badge
-            :is-dot="noticeCount"
+            :is-dot="noticeCount > 0"
             class="item bellicon"
             style="cursor: pointer"
             ><el-icon><Bell /></el-icon>
@@ -77,9 +77,10 @@
     </div>
   </div>
 </template>
+
 <script>
 // import {request} from "utils/request"
-import BreadCrumb from 'components/Breadcrumb/BreadCrumb'
+import BreadCrumb from "components/Breadcrumb/BreadCrumb";
 // import MenuTree from './MenuTree/MenuTree'
 
 export default {
@@ -121,6 +122,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
 .basic-layout {
   position: relative;
