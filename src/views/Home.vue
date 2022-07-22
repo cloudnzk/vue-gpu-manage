@@ -14,6 +14,7 @@
         text-color="#fff"
         active-text-color="#409eff"
         :collapse="isCollapse"
+        router
       >
         <!-- <MenuTree :menuList="menuList"/> -->
         <el-sub-menu index="1">
@@ -21,7 +22,7 @@
             <el-icon><Setting /></el-icon>
             <span>系统管理</span>
           </template>
-          <el-menu-item index="1-1">用户管理</el-menu-item>
+          <el-menu-item index="user">用户管理</el-menu-item>
           <el-menu-item index="1-2">菜单管理</el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="2">
