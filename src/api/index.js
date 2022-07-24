@@ -69,4 +69,18 @@ export default {
             url: '/menu/getPermissonMenuList',
         })
     },
+    // 获取所有用户列表
+    getAllUserList(params) {
+        return request({
+            url: '/users/all/list',
+            params,
+        })
+    },
+    //新建/修改/删除部门
+    postDeptC_U_D(data){
+        return request({
+            url: '/dept/operate',
+            data,
+        })
+    },
 }

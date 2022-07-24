@@ -37,7 +37,7 @@ service.interceptors.response.use((res) => {
         ElMessage.error(TOKEN_INVALID)
         // 验证失败，跳转到登录页面
         setTimeout(() => {
-            router.push('./login')
+            router.push('/login')
         },1500)
         // 返回一个 rejected 状态，包装了错误原因的 Promise
         return Promise.reject(TOKEN_INVALID)
