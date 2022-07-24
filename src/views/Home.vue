@@ -80,7 +80,7 @@
 <script>
 // import {request} from "utils/request"
 import BreadCrumb from "components/Breadcrumb/BreadCrumb";
-import MenuTree from './MenuTree/MenuTree'
+import MenuTree from 'components/MenuTree/MenuTree'
 
 export default {
   name: "HomePage",
