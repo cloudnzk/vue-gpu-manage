@@ -16,14 +16,14 @@
         :collapse="isCollapse"
         router
       >
-        <!-- <MenuTree :menuList="menuList"/> -->
-        <el-sub-menu index="1">
+        <MenuTree :menuList="menuList"/>
+        <!-- <el-sub-menu index="1">
           <template #title>
             <el-icon><Setting /></el-icon>
             <span>系统管理</span>
           </template>
           <el-menu-item index="user">用户管理</el-menu-item>
-          <el-menu-item index="1-2">菜单管理</el-menu-item>
+          <el-menu-item index="system/menu">菜单管理</el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="2">
           <template #title>
@@ -32,7 +32,7 @@
           </template>
           <el-menu-item index="2-1">休假申请</el-menu-item>
           <el-menu-item index="2-2">待我审批</el-menu-item>
-        </el-sub-menu>
+        </el-sub-menu> -->
       </el-menu>
     </div>
 
@@ -71,7 +71,7 @@
 
       <!-- 子路由展示 -->
       <div class="wrapper">
-          <router-view></router-view>
+        <router-view></router-view>
       </div>
     </div>
   </div>
@@ -80,14 +80,14 @@
 <script>
 // import {request} from "utils/request"
 import BreadCrumb from "components/Breadcrumb/BreadCrumb";
-// import MenuTree from './MenuTree/MenuTree'
+import MenuTree from './MenuTree/MenuTree'
 
 export default {
   name: "HomePage",
   mixins: [],
   components: {
     BreadCrumb,
-    // MenuTree,
+    MenuTree,
   },
   props: {},
   data() {
@@ -100,7 +100,9 @@ export default {
   },
   computed: {},
   watch: {},
-  created() {},
+  created() {
+    this.getMenuListRequest()
+  },
   mounted() {},
   unmounted() {},
   methods: {
@@ -117,6 +119,11 @@ export default {
         this.$store.commit("saveUserInfo", "");
         this.$router.replace("/login");
       }
+    },
+    //获取菜单列表数据
+    async getMenuListRequest() {
+      const res = await this.$api.getPermissonMenuList();
+      this.menuList = res.menuList;
     },
   },
 };
