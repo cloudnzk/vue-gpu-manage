@@ -8,7 +8,10 @@ import storage  from "@/utils/storage";
 
 const state = {
     // 获取用户信息，如果 storage 中找不到再取空对象
-    userInfo: storage.getItem("userInfo")  || {}
+    userInfo: storage.getItem("userInfo")  || {},
+    // 保存用户可访问的菜单列表和按钮列表
+    menuList: storage.getItem("menuList") || [],
+    btnList: storage.getItem("btnList") || [],
 }
 
 export default createStore({

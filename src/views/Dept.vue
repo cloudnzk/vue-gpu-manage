@@ -21,6 +21,7 @@
         <el-button
           type="primary"
           @click="addHandler(1)"
+          v-permisson="'dept-create'"
           >新增部门</el-button
         >
       </div>
@@ -44,17 +45,20 @@
               size="small"
               @click="addHandler(2, scope.row)"
               type="primary"
+              v-permisson="'dept-create'"
               >添加</el-button
             >
             <el-button
               size="small"
               @click="handleEdit(scope.row)"
+              v-permisson="'dept-edit'"
               >编辑</el-button
             >
             <el-button
               size="small"
               type="danger"
               @click="handleDelete(scope.row)"
+              v-permisson="'dept-delete'"
               >删除</el-button
             >
           </template>

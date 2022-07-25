@@ -18,7 +18,10 @@
     <div class="roles-bottom">
       <div class="roles-bottom-top">
         <!-- <el-button type="primary" @click="createHandler" v-permisson="'role-create'">创建角色</el-button> -->
-        <el-button type="primary" @click="createHandler">创建角色</el-button>
+        <el-button type="primary" 
+        @click="createHandler"
+        v-permisson="'role-create'"
+        >创建角色</el-button>
       </div>
       <div class="roles-bottom-table">
         <el-table ref="rolesTable" :data="rolesData">
@@ -38,19 +41,23 @@
               <!-- <el-button size="mini" @click="handleEdit(scope.row)" v-permisson="'role-edit'">编辑</el-button>
                             <el-button size="mini" type="primary" @click="handlerSetPermission(scope.row)" v-permisson="'role-setpermission'">设置权限</el-button>
                             <el-button size="mini" type="danger" @click="handleDelete(scope.row,'delete')" v-permisson="'role-delete'">删除</el-button> -->
-              <el-button size="small" @click="handleEdit(scope.row)"
+              <el-button size="small" 
+              @click="handleEdit(scope.row)"
+              v-permisson="'role-edit'"
                 >编辑</el-button
               >
               <el-button
                 size="small"
                 type="primary"
                 @click="handlerSetPermission(scope.row)"
+                v-permisson="'role-setpermission'"
                 >设置权限</el-button
               >
               <el-button
                 size="small"
                 type="danger"
                 @click="handleDelete(scope.row, 'delete')"
+                v-permisson="'role-delete'"
                 >删除</el-button
               >
             </template>

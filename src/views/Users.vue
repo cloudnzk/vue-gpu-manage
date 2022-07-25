@@ -35,8 +35,8 @@
     <!-- 表格区域 start -->
     <div class="users-bottom">
       <div class="users-bottom-top">
-        <el-button type="primary" @click="addUserHandler">新增用户</el-button>
-        <el-button type="danger" @click="handlePatch">批量删除</el-button>
+        <el-button type="primary" @click="addUserHandler" v-permisson="'user-create'">新增用户</el-button>
+        <el-button type="danger" @click="handlePatch" v-permisson="'user-deletes'">批量删除</el-button>
       </div>
       <div class="users-bottom-table">
         <!-- 展示用户信息 -->
@@ -54,11 +54,12 @@
           <el-table-column label="操作" width="180" align="center">
             <!-- scope.row 可以获取单条数据，作用域插槽 -->
             <template #default="scope">
-              <el-button size="small" @click="handleEdit(scope.row)">编辑</el-button>
+              <el-button size="small" @click="handleEdit(scope.row)" v-permisson="'user-edit'">编辑</el-button>
               <el-button
                 size="small"
                 type="danger"
                 @click="handleDel(scope.row)"
+                v-permisson="'user-delete'"
                 >删除</el-button
               >
             </template>

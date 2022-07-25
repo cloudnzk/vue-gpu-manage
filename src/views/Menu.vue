@@ -27,6 +27,7 @@
         <el-button
           type="primary"
           @click="addMenuHandler(1)"
+          v-permisson="'menu-create'"
           >新增菜单</el-button
         >
         <!-- <el-button type="primary" @click="addMenuHandler(1)" >新增菜单</el-button> -->
@@ -54,17 +55,20 @@
               size="small"
               @click="addMenuHandler(2, scope.row)"
               type="primary"
+              v-permisson="'menu-create'"
               >添加</el-button
             >
             <el-button
               size="small"
               @click="handleEdit(scope.row)"
+              v-permisson="'menu-edit'"
               >编辑</el-button
             >
             <el-button
               size="small"
               type="danger"
               @click="handleDelete(scope.row)"
+              v-permisson="'menu-delete'"
               >删除</el-button
             >
           </template>

@@ -124,6 +124,10 @@ export default {
     async getMenuListRequest() {
       const res = await this.$api.getPermissonMenuList();
       this.menuList = res.menuList;
+
+      // 保存菜单列表、按钮列表到 Vuex 中
+      this.$store.commit("saveUserMenu", res.menuList)
+      this.$store.commit("saveUserBtn", res.btnList)
     },
   },
 };

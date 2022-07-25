@@ -7,6 +7,7 @@ const Users = () => import('../views/Users')
 const Menu = () => import('../views/Menu.vue')
 const Dept = () => import('../views/Dept.vue')
 const Roles = () => import('../views/Roles.vue')
+const Page404 = () => import('../views/404.vue')
 
 const routes = [
     {
@@ -68,6 +69,14 @@ const routes = [
             title: '登录'
         },
         component: Login,
+    },
+    {
+        name: '404',
+        path: '/404',
+        meta: {
+            title: '页面不存在'
+        },
+        component: Page404,
     }
 ]
 
@@ -76,4 +85,19 @@ const router = createRouter({
     history: createWebHashHistory(),
 })
 
+// 判断当前地址是否有权访问，拦截的请求路径是否包含在动态路由里
+function checkPermission(path){
+    return router.getRoutes().filter((route) => route.path === path).length
+}
+// 导航守卫
+// to: 即将要进入的目标，from: 当前导航正要离开的路由
+router.beforeEach((to,from,next) => {
+    if(checkPermission(to.path)){
+        // 设置网页 title
+        document.title = to.meta.title
+        next()
+    }else{
+        next('/404')
+    }
+})
 export default router
