@@ -6,6 +6,7 @@ const Login = () => import('../views/Login')
 const Users = () => import('../views/Users')
 const Menu = () => import('../views/Menu.vue')
 const Dept = () => import('../views/Dept.vue')
+const Roles = () => import('../views/Roles.vue')
 
 const routes = [
     {
@@ -48,6 +49,14 @@ const routes = [
                 component: Dept,
                 meta:{
                     title:'部门管理'
+                }
+            },
+            {
+                path:'/system/roles',
+                name:'Roles',
+                component: Roles,
+                meta:{
+                    title:'角色管理'
                 }
             },
         ]

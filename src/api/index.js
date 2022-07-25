@@ -83,4 +83,27 @@ export default {
             data,
         })
     },
+    // 获取角色列表数据
+    getRolesList(params){
+        return request({
+            url: '/roles/list',
+            params
+        })
+    },
+    // 角色创建/编辑/删除
+    postRolesC_U_D(data){
+        return request({
+            url: '/roles/operate',
+            method: 'post',
+            data,
+        })
+    },
+    // 设置角色权限
+    postUpdatePermission(data){
+        return request({
+            url: '/roles/update/permission',
+            method: 'post',
+            data
+        })
+    },
 }
