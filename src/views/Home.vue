@@ -16,7 +16,7 @@
         :collapse="isCollapse"
         router
       >
-        <MenuTree :menuList="menuList"/>
+        <MenuTree :menuList="menuList" />
         <!-- <el-sub-menu index="1">
           <template #title>
             <el-icon><Setting /></el-icon>
@@ -80,7 +80,7 @@
 <script>
 // import {request} from "utils/request"
 import BreadCrumb from "components/Breadcrumb/BreadCrumb";
-import MenuTree from 'components/MenuTree/MenuTree'
+import MenuTree from "components/MenuTree/MenuTree";
 
 export default {
   name: "HomePage",
@@ -101,7 +101,7 @@ export default {
   computed: {},
   watch: {},
   created() {
-    this.getMenuListRequest()
+    this.getMenuListRequest();
   },
   mounted() {},
   unmounted() {},
@@ -126,8 +126,8 @@ export default {
       this.menuList = res.menuList;
 
       // 保存菜单列表、按钮列表到 Vuex 中
-      this.$store.commit("saveUserMenu", res.menuList)
-      this.$store.commit("saveUserBtn", res.btnList)
+      this.$store.commit("saveUserMenu", res.menuList);
+      this.$store.commit("saveUserBtn", res.btnList);
     },
   },
 };

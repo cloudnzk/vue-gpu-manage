@@ -83,7 +83,7 @@
                 result.push({
                     path: item.path,
                     name: item.component,
-                    component:() => import(`../views/${item.component}/${item.component}.vue`),
+                    component:() => import(`../views/${item.component}.vue`),
                     meta:{
                         name: item.menuName
                     }

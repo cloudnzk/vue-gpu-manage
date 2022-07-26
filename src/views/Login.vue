@@ -30,10 +30,13 @@
 <script setup>
 // 按需引入图标，动态绑定到 input 表单上
 import { User, View } from "@element-plus/icons-vue";
-import { reactive,ref } from "vue";
-import { getCurrentInstance } from 'vue'
-import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
+import { reactive, ref } from "vue";
+import { getCurrentInstance } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+
+import publicFn from "@/utils/publicFn";
+import storage from "@/utils/storage";
 
 // 定义一些表单数据，再双向绑定上去
 // reactive: 让对象变成响应式
@@ -48,12 +51,12 @@ const rules = reactive({
   passWord: [{ required: true, message: "请输入密码", trigger: "blur" }],
 });
 
-const ruleForm = ref("ruleForm")
+const ruleForm = ref("ruleForm");
 
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance();
 
-const router = useRouter()
-const store = useStore()
+const router = useRouter();
+const store = useStore();
 
 function loginHandler() {
   // this.refs['ruleForm'] 获取组件 DOM
@@ -65,15 +68,31 @@ function loginHandler() {
         userName: user.userName,
         userPwd: user.passWord,
       });
-      // console.log(res);
       // 保存登录状态到 Vuex 中
       store.commit("saveUserInfo", res);
-      // await this.loadAsyncRoutes();
-      router.replace("/")
+      await loadAsyncRoutes();
+      router.replace("/");
     } else {
       return false;
     }
   });
+}
+
+// 添加动态路由
+async function loadAsyncRoutes() {
+  try {
+    const userInfo = storage.getItem("userInfo") || {};
+    if (userInfo.token) {
+      // 再请求一份，以防篡改
+      const { menuList } = await proxy.$api.getPermissonMenuList();
+      const routes = publicFn.gennerateRoutes(menuList);
+      routes.map((route) => {
+        router.addRoute("home", route);
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 </script>
 

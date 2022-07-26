@@ -20,7 +20,7 @@ const app = createApp(App)
 app.directive('permisson',{
     // el 是使用自定义指令的那个 DOM 对象
     // binding 是指令属性的名称
-    beforeMount(el, binding, vnode) {
+    beforeMount(el, binding) {
       // 获取按钮权限
       const btnList = storage.getItem("btnList")
       const value = binding.value
