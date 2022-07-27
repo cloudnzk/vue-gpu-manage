@@ -12,6 +12,12 @@ export default {
             data,
         })
     },
+    //获取待审批通知数量
+    getApproveCount(){
+        return request({
+            url: '/leave/count'
+        })
+    },
     // 获取菜单列表
     postMenuList(data){
         return request({
@@ -106,4 +112,27 @@ export default {
             data
         })
     },
+    //获取审批列表数据
+    getLeaveList(params){
+        return request({
+            url: '/leave/list',
+            params
+        })
+    },
+    // 申请休假提交接口
+    postLeave_C(data){
+        return request({
+            url: '/leave/operate',
+            method: 'post',
+            data
+        })
+    },
+    // 审核接口
+    postApprove(data){
+        return request({
+            url: '/leave/approve',
+            method: 'post',
+            data
+        })
+    }
 }

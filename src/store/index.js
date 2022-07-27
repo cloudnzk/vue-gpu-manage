@@ -12,6 +12,8 @@ const state = {
     // 保存用户可访问的菜单列表和按钮列表
     menuList: storage.getItem("menuList") || [],
     btnList: storage.getItem("btnList") || [],
+    // 待审批条数
+    noticeCount: 0
 }
 
 export default createStore({

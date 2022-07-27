@@ -1,5 +1,5 @@
 import storage  from "@/utils/storage";
-import {SET_USERINFO,SET_USER_MENU,SET_USER_BTN} from "./mutations-types";
+import {SET_USERINFO,SET_USER_MENU,SET_USER_BTN,SET_NOTICE_COUNT} from "./mutations-types";
 
 export default {
     [SET_USERINFO](state, userInfo){
@@ -16,5 +16,9 @@ export default {
         state.btnList = btnList
         // 因为 Vuex 的数据刷新就清空了，需要保存到 storage 中
         storage.setItem('btnList', btnList)
+    },
+    [SET_NOTICE_COUNT](state, noticeCount){
+        state.noticeCount = noticeCount;
+        storage.setItem('noticeCount', noticeCount)
     }
 }

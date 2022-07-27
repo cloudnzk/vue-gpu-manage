@@ -52,6 +52,7 @@
             :is-dot="noticeCount > 0"
             class="item bellicon"
             style="cursor: pointer"
+            @click="$router.push('/audit/approve')"
             ><el-icon><Bell /></el-icon>
           </el-badge>
           <!-- 下拉菜单 -->
@@ -94,14 +95,19 @@ export default {
     return {
       isCollapse: false, // 菜单是否折叠
       userInfo: this.$store.state.userInfo, // 用户信息
-      noticeCount: 0, // 通知数量
+      // noticeCount: 0, // 通知数量
       menuList: [], // 菜单列表数据
     };
   },
-  computed: {},
+  computed: {
+    noticeCount() {
+      return this.$store.state.noticeCount;
+    },
+  },
   watch: {},
   created() {
     this.getMenuListRequest();
+    this.getNoticeCount();
   },
   mounted() {},
   unmounted() {},
@@ -128,6 +134,14 @@ export default {
       // 保存菜单列表、按钮列表到 Vuex 中
       this.$store.commit("saveUserMenu", res.menuList);
       this.$store.commit("saveUserBtn", res.btnList);
+    },
+    async getNoticeCount() {
+      try {
+        const count = await this.$api.getApproveCount();
+        this.$store.commit("saveNoticeCount", count);
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
