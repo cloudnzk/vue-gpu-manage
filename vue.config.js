@@ -31,6 +31,16 @@ module.exports = defineConfig({
   chainWebpack: config => {
     config.when(process.env.NODE_ENV === 'production', config => {
       config.entry('app').clear().add('./src/main-prod.js')
+
+      config.set('externals', {
+        vue: 'Vue',
+        lodash: '_',
+        axios: 'axios',
+        vuex: 'Vuex',
+        'vue-router': 'VueRouter',
+        'element-plus': 'ElementPlus',
+        '@element-plus/icons-vue': 'ElementPlusIconsVue'
+      })
     })
 
     config.when(process.env.NODE_ENV === 'development', config => {
