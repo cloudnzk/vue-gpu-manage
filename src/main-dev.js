@@ -40,6 +40,7 @@ app.directive('permisson',{
 
 // 挂载路由，全局引入 ElementPlus
 app.use(router).use(store).use(ElementPlus)
+// app.use(router).use(store)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
