@@ -6,6 +6,8 @@ import config from "config"
 import {ElMessage} from "element-plus"
 import router from '../router'
 import storage from "./storage"
+import NProgress from "nprogress"
+import 'nprogress/nprogress.css'
 
 const TOKEN_INVALID = 'Token 认证失败，请重新登录'
 const NETWORK_ERROR = '网络请求异常，请稍后重试'
@@ -18,6 +20,8 @@ const service = axios.create({
 
 // 请求拦截
 service.interceptors.request.use((config) => {
+    // 在 request 拦截器中，展示进度条 NProgress
+    NProgress.start();
     // 发送请求前，检查是否有 token 值，如果有就带上发送
     const {token} = storage.getItem('userInfo');
     if(token){
@@ -28,6 +32,8 @@ service.interceptors.request.use((config) => {
 
 // 响应拦截
 service.interceptors.response.use((res) => {
+    // 在 request 拦截器中，隐藏进度条 NProgress
+    NProgress.done();
     const {code,data,msg} = res.data
     if(code === 200){
         return data
