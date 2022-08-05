@@ -8,7 +8,7 @@
       </div>
       <!-- 菜单 -->
       <el-menu
-        default-active="2"
+        :default-active="$route.path"
         class="el-menu-vertical-demo"
         background-color="#001529"
         text-color="#fff"
