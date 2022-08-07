@@ -122,7 +122,7 @@ export default {
         return;
       } else if (command === "logout") {
         //退出登录，清空登录状态并跳转到登录页
-        this.$store.commit("saveUserInfo", "");
+        this.$store.dispatch('logout')
         this.$router.replace("/login");
       }
     },

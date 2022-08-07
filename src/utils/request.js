@@ -23,9 +23,9 @@ service.interceptors.request.use((config) => {
     // 在 request 拦截器中，展示进度条 NProgress
     NProgress.start();
     // 发送请求前，检查是否有 token 值，如果有就带上发送
-    const {token} = storage.getItem('userInfo');
-    if(token){
-        config.headers.Authorization = 'Bearer ' + token;
+    const userInfo = storage.getItem('userInfo');
+    if(userInfo && userInfo.token){
+        config.headers.Authorization = 'Bearer ' + userInfo.token;
     }
     return config;
 })

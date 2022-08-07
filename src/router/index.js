@@ -1,8 +1,9 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
-import storage from "@/utils/storage";
-import API from "api"
-import publicFn from "@/utils/publicFn";
+// import storage from "@/utils/storage";
+// import API from "api"
+// import publicFn from "@/utils/publicFn";
+import store from '../store'
 
 const Home = () => import('../views/Home')
 const Welcome = () => import('../views/Welcome')
@@ -83,7 +84,7 @@ const routes = [
             title: '页面不存在'
         },
         component: Page404,
-    }
+    },
 ]
 
 const router = createRouter({
@@ -92,37 +93,55 @@ const router = createRouter({
 })
 
 // 添加动态路由
-async function loadAsyncRoutes() {
-    try {
-        const userInfo = storage.getItem('userInfo') || {}
-        if (userInfo.token) {
-            // 再请求一份，以防篡改
-            const { menuList } = await API.getPermissonMenuList()
-            const routes = publicFn.gennerateRoutes(menuList)
-            routes.map(route => {
-                router.addRoute("home", route)
-            })
-        }
-    } catch (error) {
-        console.log(error);
-    }
-}
+// async function loadAsyncRoutes() {
+//     try {
+//         const userInfo = storage.getItem('userInfo') || {}
+//         if (userInfo.token) {
+//             // 再请求一份，以防篡改
+//             const { menuList } = await API.getPermissonMenuList()
+//             const routes = publicFn.gennerateRoutes(menuList)
+//             routes.map(route => {
+//                 router.addRoute("home", route)
+//             })
+//         }
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 
-loadAsyncRoutes()
+// loadAsyncRoutes()
 
 // 判断当前地址是否有权访问，拦截的请求路径是否包含在动态路由里
-function checkPermission(path) {
-    return router.getRoutes().filter((route) => route.path === path).length
-}
+// function checkPermission(path) {
+//     return router.getRoutes().filter((route) => route.path === path).length
+// }
+
 // 导航守卫
 // to: 即将要进入的目标，from: 当前导航正要离开的路由
 router.beforeEach((to, from, next) => {
-    if (checkPermission(to.path)) {
-        // 设置网页 title
-        document.title = to.meta.title
+    document.title = to.meta.title
+
+    const token = store.getters.token
+    if(!token && to.name !== 'login'){
+        next('./login')
+    }else if(!token && to.name === 'login'){
         next()
-    } else {
-        next('/404')
+    }else{
+        // 如果登录了
+        // 但路由没加载
+        if(!store.state.hasGetRoute){
+            store.dispatch('loadAsyncRoutes').then(() => {
+                store.state.routeList.map(route => {
+                    // 别忘了第一个参数 "home"，添加为 home 的子路由
+                    router.addRoute("home",route)
+                })
+                // 这里 next() 不行。要等路由加载好了才能跳转
+                next({ ...to, replace: true })
+            })
+        }else{
+            // 路由已加载，直接跳转
+            next()
+        }
     }
 })
 export default router

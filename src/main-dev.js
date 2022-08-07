@@ -8,7 +8,7 @@ import ElementPlus from 'element-plus'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 import api from './api'
-import storage from './utils/storage'
+// import storage from './utils/storage'
 // import config from './config'
 // console.log(config);
 
@@ -22,7 +22,8 @@ app.directive('permisson',{
     // binding 是指令属性的名称
     beforeMount(el, binding) {
       // 获取按钮权限
-      const btnList = storage.getItem("btnList")
+      // const btnList = storage.getItem("btnList")
+      const btnList = store.state.btnList
       const value = binding.value
       // 判断列表中是否有对应按钮权限标识
       const hasPermisson = btnList.includes(value)

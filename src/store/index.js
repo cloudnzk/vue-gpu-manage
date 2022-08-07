@@ -4,6 +4,8 @@
 
 import { createStore } from "vuex";
 import mutations from './mutations'
+import getters from "./getters";
+import actions from "./actions"
 import storage  from "@/utils/storage";
 
 const state = {
@@ -12,6 +14,10 @@ const state = {
     // 保存用户可访问的菜单列表和按钮列表
     menuList: storage.getItem("menuList") || [],
     btnList: storage.getItem("btnList") || [],
+    // 动态路由列表
+    routeList: [],
+    // 是否已获取到动态路由列表
+    hasGetRoute: false,
     // 待审批条数
     noticeCount: 0
 }
@@ -19,4 +25,6 @@ const state = {
 export default createStore({
     state,
     mutations,
+    getters,
+    actions
 })
