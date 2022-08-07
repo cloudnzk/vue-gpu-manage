@@ -123,7 +123,7 @@ router.beforeEach((to, from, next) => {
 
     const token = store.getters.token
     if(!token && to.name !== 'login'){
-        next('./login')
+        next('/login')
     }else if(!token && to.name === 'login'){
         next()
     }else{

@@ -39,6 +39,11 @@ service.interceptors.response.use((res) => {
         return data
     }
     else if(code === 40001){
+        // token 失效了清空一下
+        const userInfo = storage.getItem('userInfo');
+        if(userInfo && userInfo.token){
+            storage.setItem('userInfo', null)
+        }
         // 给用户展示错误信息
         ElMessage.error(TOKEN_INVALID)
         // 验证失败，跳转到登录页面
