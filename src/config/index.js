@@ -6,7 +6,8 @@ const env = process.env.NODE_ENV || 'production'
 
 const EnvConfig = {
     development: {
-        baseApi: '/api',
+        // baseApi: '/api',
+        baseApi: 'http://127.0.0.1:3001/api',
         mockApi: 'https://www.fastmock.site/mock/570516aa02cdbd8eae42789628bb362b/api'
     },
     test: {

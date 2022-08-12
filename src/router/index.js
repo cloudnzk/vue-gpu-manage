@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
-// import storage from "@/utils/storage";
+import storage from "@/utils/storage";
 // import API from "api"
 // import publicFn from "@/utils/publicFn";
 import store from '../store'
@@ -122,23 +122,28 @@ router.beforeEach((to, from, next) => {
     document.title = to.meta.title
 
     const token = store.getters.token
-    if(!token && to.name !== 'login'){
+    if (!token && to.name !== 'login') {
+        // token 失效了清空一下
+        const userInfo = storage.getItem('userInfo');
+        if (userInfo && userInfo.token) {
+            storage.setItem('userInfo', null)
+        }
         next('/login')
-    }else if(!token && to.name === 'login'){
+    } else if (!token && to.name === 'login') {
         next()
-    }else{
+    } else {
         // 如果登录了
         // 但路由没加载
-        if(!store.state.hasGetRoute){
+        if (!store.state.hasGetRoute) {
             store.dispatch('loadAsyncRoutes').then(() => {
                 store.state.routeList.map(route => {
                     // 别忘了第一个参数 "home"，添加为 home 的子路由
-                    router.addRoute("home",route)
+                    router.addRoute("home", route)
                 })
                 // 这里 next() 不行。要等路由加载好了才能跳转
                 next({ ...to, replace: true })
             })
-        }else{
+        } else {
             // 路由已加载，直接跳转
             next()
         }
