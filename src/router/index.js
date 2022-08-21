@@ -124,10 +124,10 @@ router.beforeEach((to, from, next) => {
     const token = store.getters.token
     if (!token && to.name !== 'login') {
         // token 失效了清空一下
-        const userInfo = storage.getItem('userInfo');
-        if (userInfo && userInfo.token) {
-            storage.setItem('userInfo', null)
-        }
+        // const userInfo = storage.getItem('userInfo');
+        // if (userInfo && userInfo.token) {
+        //     storage.setItem('userInfo', null)
+        // }
         next('/login')
     } else if (!token && to.name === 'login') {
         next()

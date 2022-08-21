@@ -41,10 +41,15 @@ service.interceptors.response.use((res) => {
     else if(code === 40001){
         // 给用户展示错误信息
         ElMessage.error(TOKEN_INVALID)
+        // token 失效了清空一下
+        const userInfo = storage.getItem('userInfo');
+        if (userInfo && userInfo.token) {
+            storage.setItem('userInfo', null)
+        }
         // 验证失败，跳转到登录页面
-        setTimeout(() => {
-            router.push('/login')
-        },1500)
+        // setTimeout(() => {
+        //     router.push('/login')
+        // },1500)
         // 返回一个 rejected 状态，包装了错误原因的 Promise
         return Promise.reject(TOKEN_INVALID)
     }
