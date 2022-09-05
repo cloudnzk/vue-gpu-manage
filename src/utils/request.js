@@ -45,6 +45,7 @@ service.interceptors.response.use((res) => {
         const userInfo = storage.getItem('userInfo');
         if (userInfo && userInfo.token) {
             storage.setItem('userInfo', null)
+            router.push('/login')
         }
         // 验证失败，跳转到登录页面
         // setTimeout(() => {

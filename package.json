@@ -13,6 +13,7 @@
     "core-js": "^3.8.3",
     "element-plus": "^2.2.9",
     "nprogress": "^0.2.0",
+    "style-loader": "^3.3.1",
     "vue": "^3.2.13",
     "vue-router": "^4.1.2",
     "vuex": "^4.0.2"
@@ -26,10 +27,15 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "happypack": "^5.0.1",
+    "hard-source-webpack-plugin": "^0.13.1",
+    "image-webpack-loader": "^8.1.0",
     "node-sass": "^7.0.1",
     "sass-loader": "^13.0.2",
+    "speed-measure-webpack-plugin": "^1.5.0",
     "unplugin-auto-import": "^0.10.3",
-    "unplugin-vue-components": "^0.21.2"
+    "unplugin-vue-components": "^0.21.2",
+    "webpack-bundle-analyzer": "^4.6.1"
   },
   "eslintConfig": {
     "root": true,
